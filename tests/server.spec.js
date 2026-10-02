@@ -28,16 +28,6 @@ describe('server/app.js', function() {
       });
   });
 
-  it('page says hello world', (done) => {
-  chai.request(server)
-    .get('/')
-    .end((err, res) => {
-      expect(err).not.exist;
-      expect(JSON.stringify(res.text)).to.contain('Hello World');
-      done();
-    });
-  });
-
   it('page says project', (done) => {
   chai.request(server)
     .get('/')
@@ -47,5 +37,28 @@ describe('server/app.js', function() {
       done();
     });
   });
+
+  it('output should be include a p tag with id of output', (done) => {
+  chai.request(server)
+    .get('/')
+    .end((err, res) => {
+      expect(err).not.exist;
+      // code goes here check if p tag with id="output" exists 
+      expect(res.text).to.include('<p id="output">');     
+      done();
+    });
+  });
+
+  it('output should be include a p tag with correct output', (done) => {
+  chai.request(server)
+    .get('/')
+    .end((err, res) => {
+      expect(err).not.exist;
+      // code goes here check if p tag with id="output" of 100
+      expect(res.text).to.include('<p id="output">75</p>');
+      done();
+    });
+  });
+
 
 })
