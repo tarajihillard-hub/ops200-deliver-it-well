@@ -55,7 +55,7 @@ describe('server/app.js', function() {
     .end((err, res) => {
       expect(err).not.exist;
       // code goes here check if p tag with id="output" of 100
-      expect(res.text).to.include('<p id="output">75</p>');
+      expect(res.text).to.include('<p id="output">100</p>');
       done();
     });
   });
